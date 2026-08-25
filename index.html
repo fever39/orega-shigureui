@@ -112,6 +112,29 @@
                 width: 120px;
             }
         }
+.profile {
+    margin-top: 20px;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile-id {
+    display: inline-block;
+    margin-top: 5px;
+
+    color: #777;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.profile-id:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
     </style>
 </head>
 
@@ -144,25 +167,39 @@
 
 
         <!-- 結果画面 -->
-        <section id="result" class="result">
+<section id="result" class="result">
 
-            <div class="result-title">
-                結果
-            </div>
+    <div class="result-title">
+        結果
+    </div>
 
-            <div class="result-text">
-                俺はしぐれういだ
-            </div>
+    <div class="result-text">
+        俺はしぐれういだ
+    </div>
 
-            <!-- ここに写真を表示 -->
-            <img
-                id="resultImage"
-                class="result-image"
-                src="my-photo.jpg"
-                alt="俺"
-            >
+    <img
+        id="resultImage"
+        class="result-image"
+        src="my-photo.jpg"
+        alt="発熱39度"
+    >
 
-        </section>
+    <div class="profile">
+        <div class="profile-name">
+            発熱39度
+        </div>
+
+        <a
+            class="profile-id"
+            href="https://x.com/fever_39"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            @fever_39
+        </a>
+    </div>
+
+</section>
 
     </main>
 

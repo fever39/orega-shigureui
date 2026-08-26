@@ -4,138 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>確認</title>
+    <title>俺がしぐれういだ</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: #f5f5f5;
-            color: #222;
-
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Noto Sans JP",
-                sans-serif;
-        }
-
-        .container {
-            width: min(90%, 600px);
-            text-align: center;
-        }
-
-        .question-number {
-            color: #777;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .question {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        button {
-            width: 140px;
-            padding: 15px 20px;
-
-            border: 1px solid #ccc;
-            border-radius: 8px;
-
-            background: white;
-            color: #222;
-
-            font-size: 18px;
-            cursor: pointer;
-
-            transition: 0.15s;
-        }
-
-        button:hover {
-            background: #222;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* 結果画面 */
-
-        .result {
-            display: none;
-        }
-
-        .result-title {
-            font-size: 18px;
-            color: #777;
-            margin-bottom: 20px;
-        }
-
-        .result-text {
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 35px;
-        }
-
-        .result-image {
-            max-width: 100%;
-            max-height: 500px;
-            border-radius: 10px;
-            object-fit: contain;
-        }
-
-        @media (max-width: 600px) {
-            .question {
-                font-size: 23px;
-            }
-
-            .result-text {
-                font-size: 30px;
-            }
-
-            button {
-                width: 120px;
-            }
-        }
-.profile {
-    margin-top: 20px;
-}
-
-.profile-name {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.profile-id {
-    display: inline-block;
-    margin-top: 5px;
-
-    color: #777;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.profile-id:hover {
-    color: #000;
-    text-decoration: underline;
-}
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -143,108 +14,64 @@
     <main class="container">
 
         <!-- 質問画面 -->
-        <section id="quiz">
+        <section id="question-screen" class="screen">
 
-            <div class="question-number" id="questionNumber">
-                Q.1
-            </div>
+            <div class="card">
 
-            <div class="question" id="question">
-                俺はしぐれういですか？
-            </div>
+                <p id="question" class="question">
+                    Q. 発熱39度がしぐれういであることを承認して下さい
+                </p>
 
-            <div class="buttons">
-                <button onclick="nextQuestion()">
-                    はい
-                </button>
+                <div class="buttons">
 
-                <button onclick="nextQuestion()">
-                    いいえ
-                </button>
+                    <button id="yes-button" class="answer-button yes">
+                        はい
+                    </button>
+
+                    <button id="no-button" class="answer-button no">
+                        いいえ
+                    </button>
+
+                </div>
+
             </div>
 
         </section>
 
 
         <!-- 結果画面 -->
-<section id="result" class="result">
+        <section id="result-screen" class="screen hidden">
 
-    <div class="result-title">
-        結果
-    </div>
+            <div class="card result-card">
 
-    <div class="result-text">
-        俺はしぐれういだ
-    </div>
+                <p class="result-text">
+                    ありがとうございます。<br>
+                    発熱39度（@fever_39）がしぐれういである事を承認しました。
+                </p>
 
-    <img
-        id="resultImage"
-        class="result-image"
-        src="my-photo.jpg"
-        alt="発熱39度"
-    >
+                <p class="count-text">
+                    これまで承認された回数：
+                    <span id="approval-count">---</span>回
+                </p>
 
-    <div class="profile">
-        <div class="profile-name">
-            発熱39度
-        </div>
+                <img
+                    src="my-photo.jpg"
+                    alt="発熱39度（@fever_39）の写真"
+                    class="result-photo"
+                >
 
-        <a
-            class="profile-id"
-            href="https://x.com/fever_39"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            @fever_39
-        </a>
-    </div>
+                <button id="restart-button" class="restart-button">
+                    もう一度
+                </button>
 
-</section>
+            </div>
+
+        </section>
 
     </main>
 
 
-    <script>
-
-        const questions = [
-            "俺はしぐれういですか？",
-            "本当に？",
-            "本当に？",
-            "本当の本当に？",
-            "本当ですね？",
-            "本当にいいんですね？",
-            "後悔しませんね？",
-            "もう一度ききますよ？本当ですね？",
-            "これは最終確認です。本当ですね？",
-            "マジ？"
-        ];
-
-        let currentQuestion = 0;
-
-
-        function nextQuestion() {
-
-            currentQuestion++;
-
-            // Q.10まで終わったら結果画面へ
-            if (currentQuestion >= questions.length) {
-
-                document.getElementById("quiz").style.display = "none";
-                document.getElementById("result").style.display = "block";
-
-                return;
-            }
-
-
-            // 次の質問を表示
-            document.getElementById("questionNumber").textContent =
-                "Q." + (currentQuestion + 1);
-
-            document.getElementById("question").textContent =
-                questions[currentQuestion];
-        }
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
